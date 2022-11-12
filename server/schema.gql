@@ -2,6 +2,14 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type MedicalCenterDTO {
+  name: String!
+  email: String!
+  password: String!
+  type: String!
+  Gtoken: String!
+}
+
 type RiderDTO {
   name: String!
   email: String!
@@ -11,15 +19,25 @@ type RiderDTO {
 
 type Query {
   getRider(email: String!): String!
+  getMedicalCenter(email: String!): String!
 }
 
 type Mutation {
   createRider(rider: RiderInput!): RiderDTO!
+  createMedicalCenter(medicalCenter: MedicalCenterInput!): MedicalCenterDTO!
 }
 
 input RiderInput {
   name: String!
   email: String!
   password: String!
+  Gtoken: String!
+}
+
+input MedicalCenterInput {
+  name: String!
+  email: String!
+  password: String!
+  type: String!
   Gtoken: String!
 }
