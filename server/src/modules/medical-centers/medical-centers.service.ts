@@ -11,12 +11,12 @@ export class MedicalCentersService {
     private medicalCenterModel: Model<MedicalCenterDocument>,
   ) {}
 
-  async create(createCatDto: MedicalCenterInput): Promise<MedicalCenter> {
-    const createdMedicalCenter = new this.medicalCenterModel(createCatDto);
+  async create(createMedicalCenterDto: MedicalCenterInput): Promise<MedicalCenter> {
+    const createdMedicalCenter = new this.medicalCenterModel(createMedicalCenterDto);
     return createdMedicalCenter.save();
   }
 
-  async getRider(email: string) {
+  async getMedicalCenter(email: string) {
     return (await this.medicalCenterModel.findOne({ email: email })).email;
   }
 }
