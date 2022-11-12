@@ -9,7 +9,7 @@ export class MedicalCentersResolver {
 
   @Query(() => String)
   async getMedicalCenter(@Args("email") email: string) {
-    return this.riderService.getRider(email);
+    return this.riderService.getMedicalCenter(email);
   }
 
   @Mutation(() => MedicalCenterDTO)
