@@ -1,0 +1,25 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type RiderDTO {
+  name: String!
+  email: String!
+  password: String!
+  Gtoken: String!
+}
+
+type Query {
+  getRider(email: String!): String!
+}
+
+type Mutation {
+  createRider(rider: RiderInput!): RiderDTO!
+}
+
+input RiderInput {
+  name: String!
+  email: String!
+  password: String!
+  Gtoken: String!
+}
