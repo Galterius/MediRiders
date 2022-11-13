@@ -1,5 +1,5 @@
 import { UseGuards } from "@nestjs/common";
-import { Args, Mutation, Resolver } from "@nestjs/graphql";
+import { Args, Context, Mutation, Resolver } from "@nestjs/graphql";
 import { AuthService } from "./auth.service";
 import { LoginResponseDTO } from "./dto/login-response.dto";
 import { LoginInput } from "./dto/login.input";
@@ -11,7 +11,7 @@ export class AuthResolver {
 
   @Mutation(() => LoginResponseDTO)
   @UseGuards(LocalAuthGuard)
-  async login(@Args("loginData") loginData: LoginInput) {
-    return this.authService.login(loginData);
+  async login(@Args("loginData") loginData: LoginInput, @Context() context) {
+    return this.authService.login(context.user);
   }
 }
