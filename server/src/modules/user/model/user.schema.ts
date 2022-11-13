@@ -1,10 +1,14 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import { HydratedDocument } from "mongoose";
+import { v4 as uuidv4 } from "uuid";
 
-export type MedicalCenterDocument = HydratedDocument<MedicalCenter>;
+export type UserDocument = HydratedDocument<User>;
 
 @Schema()
-export class MedicalCenter {
+export class User {
+  @Prop({ default: uuidv4() })
+  id: string;
+
   @Prop()
   name: string;
 
@@ -21,4 +25,4 @@ export class MedicalCenter {
   Gtoken: string;
 }
 
-export const MedicalCenterSchema = SchemaFactory.createForClass(MedicalCenter);
+export const UserSchema = SchemaFactory.createForClass(User);

@@ -1,10 +1,7 @@
-import { Field, ObjectType } from "@nestjs/graphql";
+import { Field, InputType } from "@nestjs/graphql";
 
-@ObjectType()
-export class RiderDTO {
-  @Field(() => String)
-  readonly id: string;
-
+@InputType()
+export class UserInput {
   @Field(() => String)
   readonly name: string;
 
@@ -13,6 +10,9 @@ export class RiderDTO {
 
   @Field(() => String)
   readonly password: string;
+
+  @Field(() => String)
+  readonly type: string;
 
   @Field(() => String)
   readonly Gtoken: string;

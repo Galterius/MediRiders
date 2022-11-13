@@ -1,30 +1,23 @@
 import { Injectable } from "@nestjs/common";
-import { JwtService } from "@nestjs/jwt";
-import { MedicalCentersService } from "src/modules/medical-centers/medical-centers.service";
-import { RiderDTO } from "src/modules/riders/dto/rider.dto";
-import { RiderService } from "src/modules/riders/riders.service";
-import { LoginResponseDTO } from "./dto/login-respons.dto";
+import { UserDTO } from "src/modules/user/dto/user.dto";
+import { UserService } from "src/modules/user/user.service";
+import { LoginResponseDTO } from "./dto/login-response.dto";
 import { LoginInput } from "./dto/login.input";
-import { User } from "./dto/user.type";
+import { MappedUser } from "./dto/user.type";
 
 @Injectable()
 export class AuthService {
-  constructor(
-    private riderService: RiderService,
-    private medicalCenterService: MedicalCentersService,
-    private jwtService: JwtService,
-  ) {}
+  constructor(private riderService: UserService) {}
 
-  async validateUser(email: string, pass: string): Promise<User> {
-    const userData =
-      (await this.medicalCenterService.getMedicalCenter(email)) ?? (await this.riderService.getRider(email));
+  async validateUser(email: string, password: string): Promise<MappedUser> {
+    const userData = await this.riderService.getUser(email);
 
-    if (userData && userData.password === pass) {
+    if (userData && userData.password === password) {
       return {
         id: userData.id,
         name: userData.name,
-        type: userData instanceof RiderDTO ? "rider" : "medic",
         email: userData.email,
+        type: userData.type,
       };
     }
 
@@ -32,20 +25,15 @@ export class AuthService {
   }
 
   async login(loginData: LoginInput): Promise<LoginResponseDTO> {
-    const userData =
-      (await this.medicalCenterService.getMedicalCenter(loginData.email)) ??
-      (await this.riderService.getRider(loginData.email));
-
-    const actualUser: User = {
-      id: userData.id,
-      name: userData.name,
-      type: userData instanceof RiderDTO ? "rider" : "medic",
-      email: userData.email,
-    };
-
+    const userData: UserDTO = await this.riderService.getUser(loginData.email);
     return {
       access_token: "jwt",
-      user: actualUser,
+      user: {
+        id: userData.id,
+        name: userData.name,
+        email: userData.email,
+        type: userData.type,
+      },
     };
   }
 }
