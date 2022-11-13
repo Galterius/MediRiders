@@ -7,7 +7,7 @@ import { MedicalCentersService } from "./medical-centers.service";
 export class MedicalCentersResolver {
   constructor(private readonly riderService: MedicalCentersService) {}
 
-  @Query(() => String)
+  @Query(() => MedicalCenterDTO)
   async getMedicalCenter(@Args("email") email: string) {
     return this.riderService.getMedicalCenter(email);
   }

@@ -1,6 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import { Model } from "mongoose";
+import { RiderDTO } from "./dto/rider.dto";
 import { RiderInput } from "./dto/rider.input";
 import { Rider, RiderDocument } from "./model/riders.schema";
 
@@ -16,7 +17,7 @@ export class RiderService {
     return createdRider.save();
   }
 
-  async getRider(email: string) {
-    return (await this.riderModel.findOne({ email: email })).email;
+  async getRider(email: string): Promise<RiderDTO> {
+    return this.riderModel.findOne({ email: email });
   }
 }

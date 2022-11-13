@@ -7,7 +7,7 @@ import { RiderService } from "./riders.service";
 export class RiderResolver {
   constructor(private readonly riderService: RiderService) {}
 
-  @Query(() => String)
+  @Query(() => RiderDTO)
   async getRider(@Args("email") email: string) {
     return this.riderService.getRider(email);
   }

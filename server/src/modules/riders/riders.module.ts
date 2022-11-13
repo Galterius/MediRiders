@@ -7,5 +7,6 @@ import { RiderService } from "./riders.service";
 @Module({
   imports: [MongooseModule.forFeature([{ name: Rider.name, schema: RiderSchema }])],
   providers: [RiderResolver, RiderService],
+  exports: [RiderService],
 })
 export class RiderModule {}
