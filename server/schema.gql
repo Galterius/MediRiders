@@ -44,6 +44,7 @@ type Mutation {
   createUser(user: UserInput!): UserDTO!
   createRiderInformation(riderInformation: RiderInformationInput!): RiderInformationDTO!
   login(loginData: LoginInput!): LoginResponseDTO!
+  signup(registrationData: UserInput!): LoginResponseDTO!
 }
 
 input UserInput {

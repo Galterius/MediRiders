@@ -4,6 +4,7 @@ import { PassportModule } from "@nestjs/passport";
 import { RiderModule } from "src/modules/user/user.module";
 import { AuthResolver } from "./auth.resolver";
 import { AuthService } from "./auth.service";
+import { JwtStrategy } from "./passport/jwt.strategy";
 import { LocalStrategy } from "./passport/local.strategy";
 
 @Module({
@@ -15,6 +16,6 @@ import { LocalStrategy } from "./passport/local.strategy";
       secret: "CREATE.ENV.IDIOT",
     }),
   ],
-  providers: [AuthService, AuthResolver, LocalStrategy],
+  providers: [AuthService, AuthResolver, LocalStrategy, JwtStrategy],
 })
 export class AuthModule {}

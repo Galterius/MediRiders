@@ -9,7 +9,7 @@ export class UserInput {
   readonly email: string;
 
   @Field(() => String)
-  readonly password: string;
+  password: string;
 
   @Field(() => String)
   readonly type: string;
