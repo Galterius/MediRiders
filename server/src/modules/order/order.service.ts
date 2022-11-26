@@ -1,6 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import { Model } from "mongoose";
+import { MedicRole, RiderRole } from "src/shared/utils/decorators";
 import { OrderInput, States } from "./dto/state.types";
 import { Order } from "./model/order.schema";
 
@@ -32,4 +33,6 @@ export class OrderService {
   async findOrderById(orderId: string) {
     return this.orderModel.findById(orderId);
   }
+
+  //TODO: ADD QUERY TO GET THE ORDERS BASED ON THE MEDIC ID, ADD QUERY TO GET ORDERS BASED ON RIDER ID
 }

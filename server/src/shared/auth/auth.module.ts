@@ -1,11 +1,12 @@
 import { Module } from "@nestjs/common";
-import { JwtModule, JwtService } from "@nestjs/jwt";
+import { JwtModule } from "@nestjs/jwt";
 import { PassportModule } from "@nestjs/passport";
 import { UserModule } from "src/modules/user/user.module";
 import { AuthResolver } from "./auth.resolver";
 import { AuthService } from "./auth.service";
 import { JwtStrategy } from "./passport/jwt.strategy";
 import { LocalStrategy } from "./passport/local.strategy";
+import { RoleBasedJwtStrategy } from "./passport/role-based-jwt.strategy";
 
 @Module({
   imports: [
@@ -16,6 +17,6 @@ import { LocalStrategy } from "./passport/local.strategy";
       secret: "CREATE.ENV.IDIOT",
     }),
   ],
-  providers: [AuthService, AuthResolver, LocalStrategy, JwtStrategy],
+  providers: [AuthService, AuthResolver, LocalStrategy, JwtStrategy, RoleBasedJwtStrategy],
 })
 export class AuthModule {}

@@ -1,4 +1,5 @@
 import { Args, Mutation, Resolver, Query } from "@nestjs/graphql";
+import { MedicRole } from "src/shared/utils/decorators";
 import { OrderDTO, OrderInput, States } from "./dto/state.types";
 import { OrderService } from "./order.service";
 
@@ -7,6 +8,7 @@ export class OrderResolver {
   constructor(private orderService: OrderService) {}
 
   @Mutation(() => OrderDTO)
+  @MedicRole()
   async createOrder(@Args("order") order: OrderInput) {
     return this.orderService.createOrder(order);
   }

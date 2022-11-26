@@ -12,6 +12,7 @@ export class AuthService {
 
   async validateUser(email: string, password: string): Promise<MappedUser> {
     const userData = await this.userService.getUser(email);
+    console.log(email, password);
     const isValid = await bcrypt.compare(password, userData?.password);
     if (userData && isValid) {
       return {
@@ -34,17 +35,15 @@ export class AuthService {
 
   async signup(registrationData: UserInput): Promise<LoginResponseDTO> {
     const user = await this.userService.getUser(registrationData.email);
-    let mappedUser: MappedUser = {
-      id: user.id,
-      name: user.name,
-      role: user.role,
-      email: user.email,
-    };
-
     if (user) {
       return {
         access_token: this.jwtService.sign({ email: user.email, sub: user.id }),
-        user: mappedUser,
+        user: {
+          id: user.id,
+          name: user.name,
+          role: user.role,
+          email: user.email,
+        },
       };
     }
 
@@ -52,15 +51,14 @@ export class AuthService {
     registrationData.password = hashedPassword;
 
     const createdUser = await this.userService.create(registrationData);
-    mappedUser = {
-      id: createdUser.id,
-      name: createdUser.name,
-      role: createdUser.role,
-      email: createdUser.email,
-    };
     return {
       access_token: this.jwtService.sign({ email: createdUser.email, sub: createdUser.id }),
-      user: mappedUser,
+      user: {
+        id: createdUser.id,
+        name: createdUser.name,
+        role: createdUser.role,
+        email: createdUser.email,
+      },
     };
   }
 }
