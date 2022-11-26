@@ -15,8 +15,5 @@ export class UserDTO {
   readonly type?: string;
 
   @Field(() => String)
-  readonly password: string;
-
-  @Field(() => String)
   readonly Gtoken: string;
 }

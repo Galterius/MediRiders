@@ -7,7 +7,6 @@ type UserDTO {
   name: String!
   email: String!
   type: String!
-  password: String!
   Gtoken: String!
 }
 

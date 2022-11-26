@@ -6,7 +6,7 @@ import { UserInput } from "./dto/user.input";
 import { UserService } from "./user.service";
 
 @Resolver()
-export class RiderResolver {
+export class UserResolver {
   constructor(private readonly riderService: UserService) {}
 
   @Query(() => UserDTO)

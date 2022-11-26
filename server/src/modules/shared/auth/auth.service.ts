@@ -34,13 +34,17 @@ export class AuthService {
 
   async signup(registrationData: UserInput): Promise<LoginResponseDTO> {
     const user = await this.userService.getUser(registrationData.email);
+    let mappedUser: MappedUser = {
+      id: user.id,
+      name: user.name,
+      type: user.type,
+      email: user.email,
+    };
 
     if (user) {
-      const { password, ...rest } = user;
-
       return {
-        access_token: this.jwtService.sign({ email: rest.email, sub: rest.id }),
-        user: rest,
+        access_token: this.jwtService.sign({ email: user.email, sub: user.id }),
+        user: mappedUser,
       };
     }
 
@@ -48,12 +52,15 @@ export class AuthService {
     registrationData.password = hashedPassword;
 
     const createdUser = await this.userService.create(registrationData);
-    //TODO: ask dzs why on earth it gives undefined for stripped.name
-    const { password, ...strippedUser } = createdUser;
-    console.log(createdUser.name);
+    mappedUser = {
+      id: createdUser.id,
+      name: createdUser.name,
+      type: createdUser.type,
+      email: createdUser.email,
+    };
     return {
       access_token: this.jwtService.sign({ email: createdUser.email, sub: createdUser.id }),
-      user: createdUser,
+      user: mappedUser,
     };
   }
 }
