@@ -2,18 +2,11 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type MedicalCenterDTO {
+type UserDTO {
+  id: String!
   name: String!
   email: String!
-  password: String!
   type: String!
-  Gtoken: String!
-}
-
-type RiderDTO {
-  name: String!
-  email: String!
-  password: String!
   Gtoken: String!
 }
 
@@ -29,26 +22,31 @@ type RiderInformationDTO {
   currentState: String!
 }
 
+type MappedUser {
+  id: String!
+  name: String!
+  type: String
+  email: String!
+}
+
+type LoginResponseDTO {
+  access_token: String!
+  user: MappedUser!
+}
+
 type Query {
-  getRider(email: String!): String!
-  getMedicalCenter(email: String!): String!
+  getUser(email: String!): UserDTO!
   getRiderInformation(riderId: String!): RiderInformationDTO!
 }
 
 type Mutation {
-  createRider(rider: RiderInput!): RiderDTO!
-  createMedicalCenter(medicalCenter: MedicalCenterInput!): MedicalCenterDTO!
+  createUser(user: UserInput!): UserDTO!
   createRiderInformation(riderInformation: RiderInformationInput!): RiderInformationDTO!
+  login(loginData: LoginInput!): LoginResponseDTO!
+  signup(registrationData: UserInput!): LoginResponseDTO!
 }
 
-input RiderInput {
-  name: String!
-  email: String!
-  password: String!
-  Gtoken: String!
-}
-
-input MedicalCenterInput {
+input UserInput {
   name: String!
   email: String!
   password: String!
@@ -66,4 +64,9 @@ input RiderInformationInput {
 input RiderLocationInput {
   lat: Float!
   lng: Float!
+}
+
+input LoginInput {
+  email: String!
+  password: String!
 }

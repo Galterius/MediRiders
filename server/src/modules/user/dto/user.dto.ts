@@ -1,7 +1,10 @@
 import { Field, ObjectType } from "@nestjs/graphql";
 
 @ObjectType()
-export class RiderDTO {
+export class UserDTO {
+  @Field(() => String)
+  readonly id: string;
+
   @Field(() => String)
   readonly name: string;
 
@@ -9,7 +12,7 @@ export class RiderDTO {
   readonly email: string;
 
   @Field(() => String)
-  readonly password: string;
+  readonly type?: string;
 
   @Field(() => String)
   readonly Gtoken: string;
