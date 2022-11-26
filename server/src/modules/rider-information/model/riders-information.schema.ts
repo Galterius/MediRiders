@@ -1,11 +1,9 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
-import { HydratedDocument } from "mongoose";
+import { Document } from "mongoose";
 import { RiderLocation } from "../dto/rider-information.location";
 
-export type RiderInformationDocument = HydratedDocument<RiderInformation>;
-
 @Schema()
-export class RiderInformation {
+export class RiderInformation extends Document {
   @Prop()
   readonly riderId: string;
 
