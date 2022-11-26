@@ -4,20 +4,20 @@ import { States } from "../dto/state.types";
 
 @Schema()
 export class Order extends Document {
-  @Prop()
+  @Prop({ required: true })
   medicId: string;
 
-  @Prop()
+  @Prop({ required: true })
   description: string;
 
-  @Prop()
+  @Prop({ required: true })
   state: States;
 
-  @Prop()
+  @Prop({ required: true, default: false })
   isCancelled: boolean;
 
-  @Prop()
-  canceledBy: string;
+  @Prop({ default: null })
+  canceledBy: string | null;
 }
 
 export const OrderSchema = SchemaFactory.createForClass(Order);

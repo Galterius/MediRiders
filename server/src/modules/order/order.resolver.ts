@@ -1,5 +1,5 @@
 import { Args, Mutation, Resolver, Query } from "@nestjs/graphql";
-import { OrderDTO, StateInput } from "./dto/state.types";
+import { OrderDTO, OrderInput, States } from "./dto/state.types";
 import { OrderService } from "./order.service";
 
 @Resolver()
@@ -7,7 +7,7 @@ export class OrderResolver {
   constructor(private orderService: OrderService) {}
 
   @Mutation(() => OrderDTO)
-  async createOrder(@Args("order") order) {
+  async createOrder(@Args("order") order: OrderInput) {
     return this.orderService.createOrder(order);
   }
 
@@ -16,16 +16,16 @@ export class OrderResolver {
     @Args("orderId")
     orderId: string,
 
-    @Args("userId")
-    userId: string,
-
     @Args("state")
-    states: StateInput,
+    states: States,
+
+    @Args({ nullable: true, name: "userId" })
+    userId?: string | null,
   ) {
-    return this.orderService.updateOrderState(orderId, userId, states.state);
+    return this.orderService.updateOrderState(orderId, userId, states);
   }
 
-  @Query(() => OrderDTO)
+  @Query(() => [OrderDTO])
   async getAllOrders() {
     return this.orderService.fetchOrders();
   }

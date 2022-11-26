@@ -34,9 +34,20 @@ type LoginResponseDTO {
   user: MappedUser!
 }
 
+type OrderDTO {
+  id: String!
+  medicId: String!
+  description: String!
+  state: String!
+  isCancelled: Boolean!
+  canceledBy: String
+}
+
 type Query {
   getUser(email: String!): UserDTO!
   getRiderInformation(riderId: String!): RiderInformationDTO!
+  getAllOrders: [OrderDTO!]!
+  getOrderById: OrderDTO!
 }
 
 type Mutation {
@@ -44,6 +55,8 @@ type Mutation {
   createRiderInformation(riderInformation: RiderInformationInput!): RiderInformationDTO!
   login(loginData: LoginInput!): LoginResponseDTO!
   signup(registrationData: UserInput!): LoginResponseDTO!
+  createOrder(order: OrderInput!): OrderDTO!
+  updateOrderState(orderId: String!, state: String!, userId: String): OrderDTO!
 }
 
 input UserInput {
@@ -69,4 +82,12 @@ input RiderLocationInput {
 input LoginInput {
   email: String!
   password: String!
+}
+
+input OrderInput {
+  medicId: String!
+  description: String!
+  state: String = "new"
+  isCancelled: Boolean = false
+  canceledBy: String
 }
