@@ -9,7 +9,7 @@ export class MappedUser {
   name: string;
 
   @Field(() => String, { nullable: true })
-  type?: string;
+  role?: string;
 
   @Field(() => String)
   email: string;

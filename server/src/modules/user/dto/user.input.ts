@@ -12,7 +12,7 @@ export class UserInput {
   password: string;
 
   @Field(() => String)
-  readonly type: string;
+  readonly role: string;
 
   @Field(() => String)
   readonly Gtoken: string;

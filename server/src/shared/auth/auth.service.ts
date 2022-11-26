@@ -18,7 +18,7 @@ export class AuthService {
         id: userData.id,
         name: userData.name,
         email: userData.email,
-        type: userData.type,
+        role: userData.role,
       };
     }
 
@@ -37,7 +37,7 @@ export class AuthService {
     let mappedUser: MappedUser = {
       id: user.id,
       name: user.name,
-      type: user.type,
+      role: user.role,
       email: user.email,
     };
 
@@ -55,7 +55,7 @@ export class AuthService {
     mappedUser = {
       id: createdUser.id,
       name: createdUser.name,
-      type: createdUser.type,
+      role: createdUser.role,
       email: createdUser.email,
     };
     return {
