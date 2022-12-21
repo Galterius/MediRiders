@@ -32,4 +32,6 @@ export class OrderService {
   async findOrderById(orderId: string) {
     return this.orderModel.findById(orderId);
   }
+
+  //TODO: ADD QUERY TO GET THE ORDERS BASED ON THE MEDIC ID, ADD QUERY TO GET ORDERS BASED ON RIDER ID
 }

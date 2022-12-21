@@ -12,7 +12,7 @@ export class UserDTO {
   readonly email: string;
 
   @Field(() => String)
-  readonly type?: string;
+  readonly role: string;
 
   @Field(() => String)
   readonly Gtoken: string;

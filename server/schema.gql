@@ -6,7 +6,7 @@ type UserDTO {
   id: String!
   name: String!
   email: String!
-  type: String!
+  role: String!
   Gtoken: String!
 }
 
@@ -22,16 +22,8 @@ type RiderInformationDTO {
   currentState: String!
 }
 
-type MappedUser {
-  id: String!
-  name: String!
-  type: String
-  email: String!
-}
-
 type LoginResponseDTO {
   access_token: String!
-  user: MappedUser!
 }
 
 type OrderDTO {
@@ -63,7 +55,7 @@ input UserInput {
   name: String!
   email: String!
   password: String!
-  type: String!
+  role: String!
   Gtoken: String!
 }
 
