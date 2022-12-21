@@ -15,8 +15,7 @@ export class RoleBasedJwtStrategy extends PassportStrategy(Strategy, "role-jwt")
   }
 
   async validate(payload: any): Promise<User> {
-    const userId = payload.sub;
-    const user = await this.userService.findUserById(userId);
+    const user = await this.userService.findUserById(payload.userId);
     if (!user) {
       throw new UnauthorizedException("Invalid access token!");
     }

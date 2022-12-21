@@ -5,7 +5,6 @@ import { UserModule } from "src/modules/user/user.module";
 import { AuthResolver } from "./auth.resolver";
 import { AuthService } from "./auth.service";
 import { JwtStrategy } from "./passport/jwt.strategy";
-import { LocalStrategy } from "./passport/local.strategy";
 import { RoleBasedJwtStrategy } from "./passport/role-based-jwt.strategy";
 
 @Module({
@@ -17,6 +16,6 @@ import { RoleBasedJwtStrategy } from "./passport/role-based-jwt.strategy";
       secret: "CREATE.ENV.IDIOT",
     }),
   ],
-  providers: [AuthService, AuthResolver, LocalStrategy, JwtStrategy, RoleBasedJwtStrategy],
+  providers: [AuthService, AuthResolver, JwtStrategy, RoleBasedJwtStrategy],
 })
 export class AuthModule {}

@@ -22,16 +22,8 @@ type RiderInformationDTO {
   currentState: String!
 }
 
-type MappedUser {
-  id: String!
-  name: String!
-  role: String
-  email: String!
-}
-
 type LoginResponseDTO {
   access_token: String!
-  user: MappedUser!
 }
 
 type OrderDTO {
