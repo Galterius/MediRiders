@@ -1865,6 +1865,13 @@
   dependencies:
     "@types/node" "*"
 
+"@types/convict@^6.1.1":
+  version "6.1.1"
+  resolved "https://registry.yarnpkg.com/@types/convict/-/convict-6.1.1.tgz#6752095a7fbf0fb5a50bb0016515a9c987ca5a29"
+  integrity sha512-R+JLaTvhsD06p4jyjUDtbd5xMtZTRE3c0iI+lrFWZogSVEjgTWPYwvJPVf+t92E+yrlbXa4X4Eg9ro6gPdUt4w==
+  dependencies:
+    "@types/node" "*"
+
 "@types/cookiejar@*":
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/@types/cookiejar/-/cookiejar-2.1.2.tgz#66ad9331f63fe8a3d3d9d8c6e3906dd10f6446e8"
@@ -1953,6 +1960,11 @@
   dependencies:
     expect "^28.0.0"
     pretty-format "^28.0.0"
+
+"@types/js-yaml@^4.0.5":
+  version "4.0.5"
+  resolved "https://registry.yarnpkg.com/@types/js-yaml/-/js-yaml-4.0.5.tgz#738dd390a6ecc5442f35e7f03fa1431353f7e138"
+  integrity sha512-FhpRzf927MNQdRZP0J5DLIdTXhjLYzeUTmLAu69mnVksLH9CJY3IuSeEgbKUki7GQZm0WqDkGzyxju2EZGD2wA==
 
 "@types/json-schema@*", "@types/json-schema@^7.0.8", "@types/json-schema@^7.0.9":
   version "7.0.11"

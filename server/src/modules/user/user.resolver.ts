@@ -16,7 +16,7 @@ export class UserResolver {
   }
 
   @Mutation(() => UserDTO)
-  async createUser(@Args("user") user: UserInput) {
+  async createUser(@Args() user: UserInput) {
     return this.riderService.create(user);
   }
 }

@@ -1,8 +1,9 @@
-import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
+import { NestFactory } from "@nestjs/core";
+import environment from "@shared/configs/environment";
+import { AppModule } from "./app.module";
 
-async function bootstrap() {
+(async () => {
   const app = await NestFactory.create(AppModule);
-  await app.listen(3000);
-}
-bootstrap();
+  const port = environment.get("server.port");
+  await app.listen(port);
+})();
