@@ -31,5 +31,9 @@
 		"vite": "^4.0.0",
 		"vitest": "^0.25.3"
 	},
-	"type": "module"
+	"type": "module",
+	"dependencies": {
+		"graphql": "^16.6.0",
+		"graphql-request": "^5.1.0"
+	}
 }
