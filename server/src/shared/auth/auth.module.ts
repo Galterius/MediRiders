@@ -1,6 +1,7 @@
 import { Module } from "@nestjs/common";
 import { JwtModule } from "@nestjs/jwt";
 import { PassportModule } from "@nestjs/passport";
+import environment from "@shared/configs/environment";
 import { UserModule } from "src/modules/user/user.module";
 import { AuthResolver } from "./auth.resolver";
 import { AuthService } from "./auth.service";
@@ -12,8 +13,8 @@ import { RoleBasedJwtStrategy } from "./passport/role-based-jwt.strategy";
     UserModule,
     PassportModule,
     JwtModule.register({
-      signOptions: { expiresIn: "3600s" },
-      secret: "CREATE.ENV.IDIOT",
+      signOptions: { expiresIn: environment.get("access_token.duration") },
+      secret: environment.get("access_token.secret"),
     }),
   ],
   providers: [AuthService, AuthResolver, JwtStrategy, RoleBasedJwtStrategy],

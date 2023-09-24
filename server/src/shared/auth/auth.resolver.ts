@@ -9,12 +9,12 @@ export class AuthResolver {
   constructor(private authService: AuthService) {}
 
   @Mutation(() => LoginResponseDTO)
-  async login(@Args("loginData") loginData: LoginInput) {
+  async login(@Args() loginData: LoginInput) {
     return this.authService.login(loginData);
   }
 
   @Mutation(() => LoginResponseDTO)
-  async signup(@Args("registrationData") registrationData: UserInput) {
+  async signup(@Args() registrationData: UserInput) {
     return this.authService.signup(registrationData);
   }
 }

@@ -43,20 +43,12 @@ type Query {
 }
 
 type Mutation {
-  createUser(user: UserInput!): UserDTO!
+  createUser(name: String!, email: String!, password: String!, role: String!, Gtoken: String!): UserDTO!
   createRiderInformation(riderInformation: RiderInformationInput!): RiderInformationDTO!
-  login(loginData: LoginInput!): LoginResponseDTO!
-  signup(registrationData: UserInput!): LoginResponseDTO!
+  login(email: String!, password: String!): LoginResponseDTO!
+  signup(name: String!, email: String!, password: String!, role: String!, Gtoken: String!): LoginResponseDTO!
   createOrder(order: OrderInput!): OrderDTO!
   updateOrderState(orderId: String!, state: String!, userId: String): OrderDTO!
-}
-
-input UserInput {
-  name: String!
-  email: String!
-  password: String!
-  role: String!
-  Gtoken: String!
 }
 
 input RiderInformationInput {
@@ -69,11 +61,6 @@ input RiderInformationInput {
 input RiderLocationInput {
   lat: Float!
   lng: Float!
-}
-
-input LoginInput {
-  email: String!
-  password: String!
 }
 
 input OrderInput {
