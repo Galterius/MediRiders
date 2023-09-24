@@ -1,0 +1,16 @@
+{
+	"/": [
+		"src/routes/+page.server.ts"
+	],
+	"/about": [
+		"src/routes/about/+page.ts"
+	],
+	"/orders": [
+		"src/routes/orders/+page.ts"
+	],
+	"/orders/history": [],
+	"/orders/[id]": [],
+	"/register": [
+		"src/routes/register/+page.ts"
+	]
+}
