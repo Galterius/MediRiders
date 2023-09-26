@@ -14,6 +14,6 @@ export class UserInput {
   @Field(() => String)
   readonly role: string;
 
-  @Field(() => String)
-  readonly Gtoken: string;
+  @Field(() => String, { nullable: true })
+  readonly Gtoken?: string;
 }

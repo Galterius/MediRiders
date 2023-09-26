@@ -1,6 +1,15 @@
 <script lang="ts">
 	import { Field, Form } from '$lib/form';
 	import { Button } from '$lib/button';
+	import type { ActionData } from '../$types';
+	//localStorage.removeItem('accessToken');
+	//localStorage.removeItem('accessToken');
+	export let form: ActionData;
+
+	$: if (form !== null) {
+		localStorage.setItem('accessToken', form?.signup?.access_token);
+		localStorage.getItem('accessToken');
+	}
 </script>
 
 <div>
@@ -47,7 +56,7 @@
 						/>
 						<div>
 							<label class="text-white">
-								<input type="checkbox" checked={false} />
+								<input type="checkbox" checked={false} name="isMedic" />
 								I'm a Medic!
 							</label>
 						</div>
@@ -58,3 +67,4 @@
 		</div>
 	</section>
 </div>
+{localStorage.getItem('accessToken')}

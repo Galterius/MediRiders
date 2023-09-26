@@ -1,6 +1,9 @@
 <script lang="ts">
 	import { Field, Form } from '$lib/form';
 	import { Button } from '$lib/button';
+	import type { PageData } from './$types';
+
+	export let data: PageData;
 </script>
 
 <div>
@@ -46,3 +49,10 @@
 		</div>
 	</section>
 </div>
+
+<!-- <div>
+	{#each data.countries as country}
+		<p>{country?.emoji}</p>
+		<p>{country?.name}</p>
+	{/each}
+</div> -->

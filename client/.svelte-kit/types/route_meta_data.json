@@ -1,5 +1,6 @@
 {
 	"/": [
+		"src/routes/+page.ts",
 		"src/routes/+page.server.ts"
 	],
 	"/about": [
@@ -11,6 +12,7 @@
 	"/orders/history": [],
 	"/orders/[id]": [],
 	"/register": [
-		"src/routes/register/+page.ts"
+		"src/routes/register/+page.ts",
+		"src/routes/register/+page.server.ts"
 	]
 }

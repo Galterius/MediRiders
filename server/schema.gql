@@ -43,10 +43,10 @@ type Query {
 }
 
 type Mutation {
-  createUser(name: String!, email: String!, password: String!, role: String!, Gtoken: String!): UserDTO!
+  createUser(name: String!, email: String!, password: String!, role: String!, Gtoken: String): UserDTO!
   createRiderInformation(riderInformation: RiderInformationInput!): RiderInformationDTO!
   login(email: String!, password: String!): LoginResponseDTO!
-  signup(name: String!, email: String!, password: String!, role: String!, Gtoken: String!): LoginResponseDTO!
+  signup(name: String!, email: String!, password: String!, role: String!, Gtoken: String): LoginResponseDTO!
   createOrder(order: OrderInput!): OrderDTO!
   updateOrderState(orderId: String!, state: String!, userId: String): OrderDTO!
 }
