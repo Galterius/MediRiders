@@ -55,7 +55,7 @@ type Mutation {
   login(email: String!, password: String!): LoginResponseDTO!
   signup(name: String!, email: String!, password: String!, role: String!, Gtoken: String): LoginResponseDTO!
   createOrder(order: OrderInput!): OrderDTO!
-  updateOrderState(orderId: String!, state: Float!, userId: String): OrderDTO!
+  updateOrderState(orderId: String!, state: State!, userId: String): OrderDTO!
 }
 
 input RiderInformationInput {

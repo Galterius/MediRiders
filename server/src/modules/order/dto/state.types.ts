@@ -1,14 +1,6 @@
 import { Field, InputType, ObjectType } from "@nestjs/graphql";
 import { State } from "@shared/utils/enums/state-enum";
 
-export type States = "new" | "picked up" | "delivered" | "cancelled";
-
-// @InputType()
-// export class StateInput {
-//   @Field(() => String)
-//   state: States;
-// }
-
 @ObjectType()
 export class OrderDTO {
   @Field(() => String)

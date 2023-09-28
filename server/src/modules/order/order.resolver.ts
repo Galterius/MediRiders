@@ -19,7 +19,7 @@ export class OrderResolver {
     @Args("orderId")
     orderId: string,
 
-    @Args("state")
+    @Args("state", { type: () => State })
     states: State,
 
     @Args({ nullable: true, name: "userId" })
