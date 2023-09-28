@@ -1,8 +1,9 @@
 import { Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import { Model } from "mongoose";
-import { OrderInput, States } from "./dto/state.types";
+import { OrderInput } from "./dto/state.types";
 import { Order } from "./model/order.schema";
+import { State } from "@shared/utils/enums/state-enum";
 
 @Injectable()
 export class OrderService {
@@ -16,9 +17,9 @@ export class OrderService {
     return createdOrder.save();
   }
 
-  async updateOrderState(orderId: string, userId: string, state: States) {
+  async updateOrderState(orderId: string, userId: string, state: State) {
     const input = { state: state };
-    if (state === "cancelled") {
+    if (state === State.CANCELLED) {
       input["canceledBy"] = userId;
     }
 

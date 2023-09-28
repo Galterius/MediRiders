@@ -1,10 +1,9 @@
-import { redirect } from '@sveltejs/kit';
 import type { Actions } from './$types';
 import { request as gqlRequest, gql } from 'graphql-request';
 
 //TODO: THIS IS ONLY THE HAPPY PATH, HANDEL INCORRECT DATA AS WELL
 export const actions: Actions = {
-	default: async ({ request }) => {
+	default: async ({ request }): Promise<string> => {
 		const data = await request.formData();
 		const mutation = gql`
 			mutation login($email: String!, $password: String!) {
@@ -18,12 +17,12 @@ export const actions: Actions = {
 			password: data.get('password')
 		};
 
-		const response: { access_token: string } = await gqlRequest(
+		const response: { login: { access_token: string } } = await gqlRequest(
 			'http://localhost:3000/graphql',
 			mutation,
 			variables
 		);
-
-		localStorage.setItem('accessToken', response.access_token);
+		console.log(response);
+		return response.login.access_token;
 	}
-};
+} satisfies Actions;

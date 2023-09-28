@@ -1,23 +1,27 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
-import { Document } from "mongoose";
-import { States } from "../dto/state.types";
+import { Document, Schema as MongooseSchema } from "mongoose";
+import { User } from "@modules/user/model/user.schema";
+import { State } from "@shared/utils/enums/state-enum";
 
 @Schema()
 export class Order extends Document {
-  @Prop({ required: true })
-  medicId: string;
+  @Prop({ required: true, type: MongooseSchema.Types.ObjectId })
+  medicId: User;
 
   @Prop({ required: true })
   description: string;
 
-  @Prop({ required: true })
-  state: States;
+  @Prop({ required: true, enum: State })
+  state: State;
 
   @Prop({ required: true, default: false })
   isCancelled: boolean;
 
-  @Prop({ default: null })
-  canceledBy: string | null;
+  @Prop({ required: false, type: MongooseSchema.Types.ObjectId, default: null })
+  canceledBy: User | null;
+
+  @Prop({ required: true, type: MongooseSchema.Types.ObjectId, default: null })
+  riderId: User | null;
 }
 
 export const OrderSchema = SchemaFactory.createForClass(Order);

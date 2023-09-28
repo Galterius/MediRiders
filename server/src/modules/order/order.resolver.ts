@@ -1,7 +1,8 @@
 import { Args, Mutation, Resolver, Query } from "@nestjs/graphql";
-import { MedicRole } from "src/shared/utils/decorators";
-import { OrderDTO, OrderInput, States } from "./dto/state.types";
+import { EveryRole, MedicRole } from "src/shared/utils/decorators";
+import { OrderDTO, OrderInput } from "./dto/state.types";
 import { OrderService } from "./order.service";
+import { State } from "@shared/utils/enums/state-enum";
 
 @Resolver()
 export class OrderResolver {
@@ -19,7 +20,7 @@ export class OrderResolver {
     orderId: string,
 
     @Args("state")
-    states: States,
+    states: State,
 
     @Args({ nullable: true, name: "userId" })
     userId?: string | null,
@@ -28,6 +29,7 @@ export class OrderResolver {
   }
 
   @Query(() => [OrderDTO])
+  @EveryRole()
   async getAllOrders() {
     return this.orderService.fetchOrders();
   }

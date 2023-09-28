@@ -1,4 +1,5 @@
 import { Field, InputType, ObjectType } from "@nestjs/graphql";
+import { State } from "@shared/utils/enums/state-enum";
 
 export type States = "new" | "picked up" | "delivered" | "cancelled";
 
@@ -19,8 +20,8 @@ export class OrderDTO {
   @Field(() => String)
   description: string;
 
-  @Field(() => String)
-  state: States;
+  @Field(() => State)
+  state: State;
 
   @Field(() => Boolean)
   isCancelled: boolean;
@@ -37,8 +38,8 @@ export class OrderInput {
   @Field(() => String)
   description: string;
 
-  @Field(() => String, { defaultValue: "new" })
-  state: States = "new";
+  @Field(() => State, { defaultValue: State.NEW })
+  state: State = State.NEW;
 
   @Field(() => Boolean, { defaultValue: false })
   isCancelled: boolean;

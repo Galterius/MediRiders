@@ -3,7 +3,7 @@ import { request as gqlRequest, gql } from 'graphql-request';
 
 //TODO: THIS IS ONLY THE HAPPY PATH, HANDEL INCORRECT DATA AS WELL
 export const actions: Actions = {
-	default: async ({ request }) => {
+	default: async ({ request }): Promise<string> => {
 		const data = await request.formData();
 		const mutation = gql`
 			mutation register($email: String!, $password: String!, $name: String!, $role: String!) {
@@ -20,8 +20,12 @@ export const actions: Actions = {
 			role: data.get('isMedic') ? 'medic' : 'rider'
 		};
 
-		return await gqlRequest('http://localhost:3000/graphql', mutation, variables);
+		const response: { signup: { access_token: string } } = await gqlRequest(
+			'http://localhost:3000/graphql',
+			mutation,
+			variables
+		);
 
-		//localStorage.setItem('accessToken', response.signup.access_token);
+		return response.signup.access_token;
 	}
 } satisfies Actions;

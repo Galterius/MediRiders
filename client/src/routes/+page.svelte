@@ -1,9 +1,14 @@
 <script lang="ts">
 	import { Field, Form } from '$lib/form';
 	import { Button } from '$lib/button';
-	import type { PageData } from './$types';
+	import type { ActionData } from './$types';
 
-	export let data: PageData;
+	export let form: ActionData;
+
+	$: if (form) {
+		const accessToken = form as string;
+		localStorage.setItem('accessToken', accessToken);
+	}
 </script>
 
 <div>
@@ -49,10 +54,3 @@
 		</div>
 	</section>
 </div>
-
-<!-- <div>
-	{#each data.countries as country}
-		<p>{country?.emoji}</p>
-		<p>{country?.name}</p>
-	{/each}
-</div> -->

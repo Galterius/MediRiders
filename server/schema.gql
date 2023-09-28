@@ -30,9 +30,16 @@ type OrderDTO {
   id: String!
   medicId: String!
   description: String!
-  state: String!
+  state: State!
   isCancelled: Boolean!
   canceledBy: String
+}
+
+enum State {
+  NEW
+  PICKED_UP
+  DELIVERED
+  CANCELLED
 }
 
 type Query {
@@ -48,7 +55,7 @@ type Mutation {
   login(email: String!, password: String!): LoginResponseDTO!
   signup(name: String!, email: String!, password: String!, role: String!, Gtoken: String): LoginResponseDTO!
   createOrder(order: OrderInput!): OrderDTO!
-  updateOrderState(orderId: String!, state: String!, userId: String): OrderDTO!
+  updateOrderState(orderId: String!, state: Float!, userId: String): OrderDTO!
 }
 
 input RiderInformationInput {
@@ -66,7 +73,7 @@ input RiderLocationInput {
 input OrderInput {
   medicId: String!
   description: String!
-  state: String = "new"
+  state: State = NEW
   isCancelled: Boolean = false
   canceledBy: String
 }

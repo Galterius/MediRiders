@@ -26,6 +26,7 @@
  * ```
  */
 declare module '$env/static/private' {
+	export const GQL_URL: string;
 	export const NVM_INC: string;
 	export const MANPATH: string;
 	export const npm_package_dependencies__envelop_graphql_jit: string;
@@ -167,6 +168,7 @@ declare module '$env/static/public' {
  */
 declare module '$env/dynamic/private' {
 	export const env: {
+		GQL_URL: string;
 		NVM_INC: string;
 		MANPATH: string;
 		npm_package_dependencies__envelop_graphql_jit: string;

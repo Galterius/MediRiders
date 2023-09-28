@@ -6,6 +6,7 @@ import { ROLES } from "./constants";
 
 export const CurrentUser = createParamDecorator((data: unknown, context: ExecutionContext) => {
   const ctx = GqlExecutionContext.create(context);
+  console.log(ctx.getContext().req.user);
   return ctx.getContext().req.user;
 });
 
@@ -14,3 +15,6 @@ export const RiderRole = () =>
 
 export const MedicRole = () =>
   applyDecorators(UseGuards(RoleJwtAuthGuard, RolesGuard), SetMetadata("roles", [ROLES.MEDIC]));
+
+export const EveryRole = () =>
+  applyDecorators(UseGuards(RoleJwtAuthGuard, RolesGuard), SetMetadata("roles", [ROLES.MEDIC, ROLES.RIDER]));
